@@ -1,0 +1,29 @@
+# Gem build artifacts
+*.gem
+pkg/
+
+# Bundler
+.bundle/
+Gemfile.lock
+
+# Logs
+log/
+*.log
+
+# Temp files
+tmp/
+
+# IDE / tooling
+.ruby-lsp/
+.vscode/
+.idea/
+
+# Claude
+.claude/
+
+# Dummy app runtime files
+test/dummy/log/
+test/dummy/tmp/
+test/dummy/db/*.sqlite3
+test/dummy/db/*.sqlite3-journal
+test/dummy/storage/
