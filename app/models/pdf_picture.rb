@@ -14,7 +14,7 @@ class PdfPicture
       stream.hash[:Subtype] == :Image ? [ attachment_for(stream, name) ].compact : []
     end
   rescue => e
-    Rails.logger.warn "PDF picture extraction failed: #{e.message}"
+    Rails.logger.warn "PDF picture extraction failed (#{e.class}): #{e.message}"
     []
   end
 
@@ -28,7 +28,7 @@ class PdfPicture
       else                 raw_to_png(stream, name)
       end
     rescue => e
-      Rails.logger.warn "PDF picture attachment failed for #{name}: #{e.message}"
+      Rails.logger.warn "PDF picture attachment failed for #{name} (#{e.class}): #{e.message}"
       nil
     end
 
@@ -48,7 +48,7 @@ class PdfPicture
 
       { io: StringIO.new(jpeg_data), filename: "#{name}.jpg", content_type: "image/jpeg" }
     rescue => e
-      Rails.logger.warn "PDF JP2 conversion failed for #{name}: #{e.message}"
+      Rails.logger.warn "PDF JP2 conversion failed for #{name} (#{e.class}): #{e.message}"
       nil
     end
 
@@ -74,7 +74,7 @@ class PdfPicture
 
       { io: StringIO.new(png_data), filename: "#{name}.png", content_type: "image/png" }
     rescue => e
-      Rails.logger.warn "PDF raw picture conversion failed for #{name}: #{e.message}"
+      Rails.logger.warn "PDF raw picture conversion failed for #{name} (#{e.class}): #{e.message}"
       nil
     end
 end
