@@ -2,6 +2,12 @@
 
 A Rails engine that adds PDF import support to [Writebook](https://once.com/writebook). It parses a PDF and creates `Page` and `Picture` leaves in a book.
 
+## Usage
+
+An **Import PDF** button is added to the book page, allowing you to upload a PDF directly from the Writebook interface.
+
+![Import PDF button on the book page](docs/import_pdf.png)
+
 ## Installation
 
 Add to your `Gemfile`:
