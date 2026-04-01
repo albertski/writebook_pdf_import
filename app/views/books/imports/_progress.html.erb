@@ -1,0 +1,11 @@
+<div data-pdf-import-progress style="flex: 1">
+  <div style="background: var(--color-hairline, #e0e0e0); border-radius: 2px; overflow: hidden; height: 6px;">
+    <div role="progressbar"
+         aria-valuenow="<%= percent %>"
+         aria-valuemin="0"
+         aria-valuemax="100"
+         style="width: <%= percent %>%; height: 100%; background: var(--color-positive, #4caf50); transition: width 0.3s ease-out;">
+    </div>
+  </div>
+  <span class="txt-small txt-muted">Importing PDF&hellip; <%= percent %>%</span>
+</div>

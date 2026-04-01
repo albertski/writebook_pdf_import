@@ -10,18 +10,18 @@ class PdfImporter
   end
 
   def import
+    total = @reader.page_count
     ActiveRecord::Base.transaction do
-      pdf_pages.flat_map { |page| leaves_for(page) }
+      @reader.pages.each_with_index.flat_map do |raw_page, index|
+        parsed = PdfPage.new(raw_page, index + 1)
+        leaves = parsed.blank? ? [] : leaves_for(parsed)
+        yield index + 1, total if block_given?
+        leaves
+      end
     end
   end
 
   private
-    def pdf_pages
-      @reader.pages.each_with_index.filter_map do |page, index|
-        parsed = PdfPage.new(page, index + 1)
-        parsed unless parsed.blank?
-      end
-    end
 
     def leaves_for(pdf_page)
       leaves = []
