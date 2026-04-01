@@ -3,7 +3,7 @@ class Books::ImportsController < ApplicationController
 
   before_action :ensure_editable
 
-  MAX_FILE_SIZE = 50.megabytes
+  MAX_FILE_SIZE = 500.megabytes
 
   def create
     return unless valid_pdf?(params[:pdf])
