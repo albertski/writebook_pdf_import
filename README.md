@@ -28,3 +28,11 @@ gem "writebook_pdf_import"
 - `pdf-reader ~> 2.12`
 - `mini_magick` (for JPEG 2000 and raw image conversion)
 - ImageMagick must be installed on the system
+
+## Background Jobs
+
+PDF imports are processed asynchronously using Active Job. You must have Redis and a Solid Queue worker running:
+
+```bash
+redis-server
+```
