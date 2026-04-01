@@ -11,6 +11,19 @@ module WritebookPdfImport
       end
     end
 
+    initializer "writebook_pdf_import.patch_create_buttons" do
+      ActiveSupport.on_load(:action_view) do
+        ActionView::Template.prepend(Module.new do
+          def initialize(source, identifier, handler, **kwargs)
+            if identifier.to_s.end_with?("books/_create_buttons.html.erb")
+              source = source.to_s + %(\n<%= render "books/imports/import", book: book %>)
+            end
+            super
+          end
+        end)
+      end
+    end
+
     # Pin loading_controller under the host app's "controllers/" importmap namespace
     # so eagerLoadControllersFrom picks it up automatically
     initializer "writebook_pdf_import.importmap", before: "importmap" do |app|
